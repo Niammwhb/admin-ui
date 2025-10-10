@@ -1,153 +1,80 @@
-import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const container = {
-    backgroundColor: "#F3F4F6",
-    minHeight: "100vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "1rem",
-    fontFamily:
-      'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
-    boxSizing: "border-box",
-  };
-
-  const card = {
-    display: "flex",
-    flexDirection: isMobile ? "column" : "row", // stack di mobile
-    width: "100%",
-    maxWidth: "960px",
-    borderRadius: "12px",
-    overflow: "hidden",
-    boxShadow:
-      "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)",
-    background: "#fff",
-  };
-
-  const left = {
-    width: isMobile ? "100%" : "50%",
-    height: isMobile ? "200px" : "auto",
-    background: "#e5e7eb",
-    flexShrink: 0,
-  };
-
-  const imageStyle = {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    display: "block",
-  };
-
-  const right = {
-    width: isMobile ? "100%" : "50%",
-    padding: isMobile ? "1.5rem" : "2.5rem",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    boxSizing: "border-box",
-  };
-
-  const title = {
-    fontSize: isMobile ? "1.3rem" : "1.6rem",
-    fontWeight: "700",
-    color: "#111827",
-    marginBottom: "1.5rem",
-    textAlign: "center",
-  };
-
-  const label = {
-    display: "block",
-    fontSize: "0.875rem",
-    fontWeight: 700,
-    color: "#374151",
-    marginBottom: "0.5rem",
-  };
-
-  const input = {
-    width: "100%",
-    padding: "0.75rem 1rem",
-    fontSize: "0.95rem",
-    borderRadius: "8px",
-    border: "1px solid #D1D5DB",
-    marginBottom: "1rem",
-    boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-    boxSizing: "border-box",
-  };
-
-  const button = {
-    width: "100%",
-    padding: "0.75rem 1rem",
-    fontWeight: 700,
-    borderRadius: "8px",
-    border: "none",
-    cursor: "pointer",
-    backgroundColor: "#3B82F6",
-    color: "#fff",
-    fontSize: "1rem",
-  };
-
-  const handleMouseOver = (e) =>
-    (e.currentTarget.style.backgroundColor = "#2563EB");
-  const handleMouseOut = (e) =>
-    (e.currentTarget.style.backgroundColor = "#3B82F6");
+  const courses = [
+    {
+      title: "System Administration and IT Infrastructure Services",
+    },
+    {
+      title: "Operating Systems Becoming a Power User",
+    },
+    {
+      title: "The Bits and Bytes of Computer Networking",
+    },
+    {
+      title: "Technical Support Fundamentals",
+    },
+    {
+      title: "How to Succeed at: Writing Applications",
+    },
+    {
+      title: "Medicine Administration for Carers",
+    },
+  ];
 
   return (
-    <div style={container}>
-      <div style={card}>
-        <div style={left}>
-          <img
-            src="https://placehold.co/600x500"
-            alt="placeholder"
-            style={imageStyle}
-          />
-        </div>
+    <>
+      <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {courses.map((course, index) => (
+          <div
+            key={index}
+            className="shadow rounded-lg overflow-hidden flex flex-col
+            hover:border hover:border-gray-500
+            hover:shadow-lg hover:scale-105 transition-transform duration-300"
+          >
+            {/* Image */}
+            <img
+              src="https://www.placehold.co/300x200"
+              alt={course.title}
+              className="w-full h-44 object-cover"
+            />
 
-        <div style={right}>
-          <h2 style={title}>Login</h2>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <label htmlFor="email" style={label}>
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="Masukkan email"
-                style={input}
-              />
+            {/* Content */}
+            <div className="p-4 bg-red-100 flex flex-col justufy-between h-full">
+              <h3 className="text-lg font-semibold mb-4">{course.title}</h3>
+
+              <div className="bg-red-50 p-2 rounded-lg">
+                <div className="text-sm text-gray-500 mt-2 flex justify-between">
+                  <span>👥 123 users</span>
+                  <span>⏱ 60 min</span>
+                </div>
+
+                {/* Author */}
+                <div className="mt-3 mb-2 flex items-center gap-2">
+                  <img
+                    src="https://www.placehold.co/50x50"
+                    alt="Author's Avatar"
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="text-sm font-medium">Author's Name</p>
+                    <p className="text-xs text-gray-500">Designer</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="mt-4 flex items-center justify-between">
+                <div className="bg-white py-2 px-4 rounded">$123</div>
+                <button className="bg-red-700 hover:bg-red-900 active:bg-red-500 text-white px-4 py-2 rounded text-sm">
+                  Get Started
+                </button>
+              </div>
             </div>
-            <div>
-              <label htmlFor="password" style={label}>
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                placeholder="Masukkan password"
-                style={input}
-              />
-            </div>
-            <button
-              type="submit"
-              style={button}
-              onMouseOver={handleMouseOver}
-              onMouseOut={handleMouseOut}
-            >
-              Login
-            </button>
-          </form>
-        </div>
+          </div>
+        ))}
       </div>
-    </div>
+    </>
   );
 }
 
