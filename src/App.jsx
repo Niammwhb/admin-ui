@@ -125,12 +125,6 @@ function App() {
           <a className="text-primary text-sm font-bold">Create an account</a>
         </div>
         {/* link end */}
-        {/* sign in with google start */}
-        <div></div>
-        {/* sign in with google end */}
-        {/* link start */}
-        <div></div>
-        {/* link end */}
       </div>
       {/* container end */}
     </main>
