@@ -1,6 +1,6 @@
 import React from "react";
 import PostCard from "./PostCard";
-import { staticPosts } from "./Service";
+import postsData from "./postsData";
 
 function Exercise() {
   return (
